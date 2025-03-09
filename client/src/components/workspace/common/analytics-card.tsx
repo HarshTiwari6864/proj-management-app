@@ -34,7 +34,7 @@ const AnalyticsCard = (props: {
         </div>
         <Layers
           strokeWidth={2.5}
-          className="h-4 w-4  text-muted-foreground text-white"
+          className="h-4 w-4  text-muted-foreground"
         />
       </CardHeader>
       <CardContent className="w-full">

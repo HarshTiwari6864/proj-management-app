@@ -67,7 +67,7 @@ const Asidebar = () => {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter className="dark:bg-background  bg-blue-950 text-white">
+        <SidebarFooter className="dark:bg-background bg-blue-950 text-white">
           <SidebarMenu>
             <SidebarMenuItem>
               {isLoading ? (
@@ -80,11 +80,11 @@ const Asidebar = () => {
                   <DropdownMenuTrigger asChild>
                     <SidebarMenuButton
                       size="lg"
-                      className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                      className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground  "
                     >
                       <Avatar className="h-8 w-8 rounded-full">
                         <AvatarImage src={user?.profilePicture || ""} />
-                        <AvatarFallback className="rounded-full border border-gray-500">
+                        <AvatarFallback className="rounded-full border border-gray-500 text-black">
                           {user?.name?.split(" ")?.[0]?.charAt(0)}
                           {user?.name?.split(" ")?.[1]?.charAt(0)}
                         </AvatarFallback>

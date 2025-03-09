@@ -1,4 +1,4 @@
-import { Layers } from "lucide-react";
+import { AudioWaveform,Layers } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Logo = (props: { url?: string }) => {

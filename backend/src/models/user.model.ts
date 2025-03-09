@@ -7,8 +7,7 @@ export interface UserDocument extends Document {
   password?: string;
   profilePicture: string | null;
   isActive: boolean;
-  role: string;
-  lastLogin: Date ;
+  lastLogin: Date | null;
   createdAt: Date;
   updatedAt: Date;
   currentWorkspace: mongoose.Types.ObjectId | null;
@@ -39,7 +38,6 @@ const userSchema = new Schema<UserDocument>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Workspace",
     },
-    role: { type: String, default: "user" },
     isActive: { type: Boolean, default: true },
     lastLogin: { type: Date, default: null },
   },

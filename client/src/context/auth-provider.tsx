@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useContext, useEffect } from "react";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import useAuth from "@/hooks/api/use-auth";
@@ -35,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     isFetching,
     refetch: refetchAuth,
   } = useAuth();
-  const user = authData?.user || undefined;
+  const user = authData?.user;
 
   const {
     data: workspaceData,
@@ -44,16 +45,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     refetch: refetchWorkspace,
   } = useGetWorkspaceQuery(workspaceId);
 
-  const workspace = workspaceData?.workspace || null;
+  const workspace = workspaceData?.workspace;
 
   useEffect(() => {
-    if (workspaceError?.errorCode === "ACCESS_UNAUTHORIZED" && !workspaceLoading) {
-      navigate("/"); // Redirect if unauthorized
+    if (workspaceError) {
+      if (workspaceError?.errorCode === "ACCESS_UNAUTHORIZED") {
+        navigate("/"); // Redirect if the user is not a member of the workspace
+      }
     }
-  }, [navigate, workspaceError, workspaceLoading]);
+  }, [navigate, workspaceError]);
 
-  const permissions = usePermissions(user ?? undefined, workspace ?? undefined);
-
+  const permissions = usePermissions(user, workspace);
 
   const hasPermission = (permission: PermissionType): boolean => {
     return permissions.includes(permission);
@@ -82,7 +84,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuthContext must be used within an AuthProvider");
+    throw new Error("useCurrentUserContext must be used within a AuthProvider");
   }
   return context;
 };

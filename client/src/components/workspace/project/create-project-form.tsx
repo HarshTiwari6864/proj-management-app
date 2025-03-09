@@ -105,11 +105,14 @@ export default function CreateProjectForm({
           >
             Create Project
           </h1>
+          <p className="text-muted-foreground text-sm leading-tight">
+            Organize and manage tasks, resources, and team collaboration
+          </p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-100">
+              <label className="block text-sm font-medium text-gray-700">
                 Select Emoji
               </label>
               <Popover>
@@ -153,7 +156,7 @@ export default function CreateProjectForm({
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="dark:text-[#eeeeeeb5] text-sm">
+                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">
                       Project description
                       <span className="text-xs font-extralight ml-2">
                         Optional
@@ -174,7 +177,7 @@ export default function CreateProjectForm({
 
             <Button
               disabled={isPending}
-              className="flex place-self-end  h-[40px] text-white font-semibold"
+              className="flex place-self-end  h-[40px] text-white font-semibold "
               type="submit"
             >
               {isPending && <Loader className="animate-spin" />}

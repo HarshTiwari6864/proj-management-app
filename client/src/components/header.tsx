@@ -27,13 +27,13 @@ const Header = () => {
 
   const pageHeading = getPageLabel(pathname);
   return (
-    <header className="flex sticky top-0 z-50 bg-white h-12 shrink-0 items-center border-b">
-      <div className="flex flex-1 items-center gap-2 px-3">
-        <SidebarTrigger />
+    <header className="flex sticky top-0 z-50  h-12 shrink-0 items-center border-b bg-blue-950 ">
+      <div className="flex flex-1 items-center gap-2 px-3 ">
+        <SidebarTrigger  className="text-white"/>
         <Separator orientation="vertical" className="mr-2 h-4" />
-        <Breadcrumb>
+        <Breadcrumb >
           <BreadcrumbList>
-            <BreadcrumbItem className="hidden md:block text-[15px]">
+            <BreadcrumbItem className="hidden md:block text-[15px] text-gray-400">
               {pageHeading ? (
                 <BreadcrumbLink asChild>
                   <Link to={`/workspace/${workspaceId}`}>Dashboard</Link>

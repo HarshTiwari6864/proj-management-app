@@ -2,25 +2,28 @@ import { PermissionType } from "@/constant";
 import { UserType, WorkspaceWithMembersType } from "@/types/api.type";
 import { useEffect, useMemo, useState } from "react";
 
-const usePermissions = (user: UserType | null, workspace: WorkspaceWithMembersType | null) => {
+const usePermissions = (
+  user: UserType  , // Ensure types allow null
+  workspace: WorkspaceWithMembersType 
+) => {
   const [permissions, setPermissions] = useState<PermissionType[]>([]);
 
   useEffect(() => {
-    if (!user || !workspace?.members) {
-      setPermissions([]); // Reset if user or workspace is missing
-      return;
-    }
-
-    const member = workspace.members.find((m) => m.userId === user._id);
-
-    if (member?.role?.permissions) {
-      setPermissions(member.role.permissions);
-    } else {
-      setPermissions([]); // Ensure permissions don't remain undefined
+    if (user && workspace?.members) {
+      const member = workspace.members.find(
+        (member) => member?.userId === user?._id
+      );
+      
+      if (member && member.role) {
+        setPermissions(member.role.permissions || []);
+      } else {
+        console.warn("No matching member found or member role is undefined.");
+        setPermissions([]); // Clear permissions in case of missing data
+      }
     }
   }, [user, workspace]);
 
-  return useMemo(() => permissions ?? [], [permissions]);
+  return useMemo(() => permissions, [permissions]);
 };
 
 export default usePermissions;

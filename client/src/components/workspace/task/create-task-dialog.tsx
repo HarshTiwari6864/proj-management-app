@@ -14,12 +14,12 @@ const CreateTaskDialog = (props: { projectId?: string }) => {
     <div>
       <Dialog modal={true} open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger>
-          <Button className="bg-blue-950">
+          <Button>
             <Plus />
-            ADD Task
+            New Task
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-lg max-h-auto my-5 border-0 bg-blue-950 text-white">
+        <DialogContent className="sm:max-w-lg max-h-auto my-5 border-0">
           <CreateTaskForm projectId={props.projectId} onClose={onClose} />
         </DialogContent>
       </Dialog>

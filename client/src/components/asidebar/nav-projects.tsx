@@ -105,7 +105,7 @@ export function NavProjects() {
   };
   return (
     <>
-      <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+      <SidebarGroup className="group-data-[collapsible=icon]:hidden text-white">
         <SidebarGroupLabel className="w-full justify-between pr-0 text-white">
           <span>Projects</span>
 

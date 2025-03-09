@@ -189,6 +189,9 @@ export default function CreateTaskForm(props: {
           >
             Create Task
           </h1>
+          <p className="text-muted-foreground text-sm leading-tight">
+            Organize and manage tasks, resources, and team collaboration
+          </p>
         </div>
         <Form {...form}>
           <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>

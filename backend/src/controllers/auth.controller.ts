@@ -5,7 +5,6 @@ import { registerSchema } from "../validation/auth.validation";
 import { HTTPSTATUS } from "../config/http.config";
 import { registerUserService } from "../services/auth.service";
 import passport from "passport";
-import jwt from "jsonwebtoken"; // Import JWT
 
 export const googleLoginCallback = asyncHandler(
   async (req: Request, res: Response) => {
@@ -37,12 +36,15 @@ export const registerUserController = asyncHandler(
   }
 );
 
-
 export const loginController = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     passport.authenticate(
       "local",
-      (err: Error | null, user: Express.User | false, info: { message: string } | undefined) => {
+      (
+        err: Error | null,
+        user: Express.User | false,
+        info: { message: string } | undefined
+      ) => {
         if (err) {
           return next(err);
         }
@@ -58,14 +60,8 @@ export const loginController = asyncHandler(
             return next(err);
           }
 
-          // Ensure the token is generated and sent only in login
-          const token = jwt.sign({ id: user.id, role: user.role }, config.JWT_SECRET, {
-            expiresIn: "1d",
-          });
-
           return res.status(HTTPSTATUS.OK).json({
             message: "Logged in successfully",
-            token,  // ✅ Token should be included in login response
             user,
           });
         });
@@ -73,7 +69,6 @@ export const loginController = asyncHandler(
     )(req, res, next);
   }
 );
-
 
 export const logOutController = asyncHandler(
   async (req: Request, res: Response) => {

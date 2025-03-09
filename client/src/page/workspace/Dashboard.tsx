@@ -14,15 +14,15 @@ const WorkspaceDashboard = () => {
       <div className="flex items-center justify-between space-y-2 mb-6">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
-            Workspace 
+            Workspace Overview
           </h2>
           <p className="text-muted-foreground">
-             overview for this workspace!
+            Here&apos;s an overview for this workspace!
           </p>
         </div>
-        <Button onClick={onOpen} className="bg-blue-950">
+        <Button className="bg-blue-950" onClick={onOpen} >
           <Plus />
-          ADD Project
+          New Project
         </Button>
       </div>
       <WorkspaceAnalytics />
